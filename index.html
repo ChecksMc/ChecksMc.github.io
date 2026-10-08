@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personal website for ChecksMc, a student interested in science, technology, and making things.">
+  <title>ChecksMc | Personal website</title>
+  <style>
+    :root {
+      --paper: #f4ecf0;
+      --surface: #fbf6fb;
+      --ink: #202325;
+      --muted: hsl(213, 22%, 40%);
+      --line: #d8d8cf;
+      --accent: hsl(230, 45%, 32%);
+      --max-width: 1080px;
+    }
+
+    [data-theme="dark"] {
+      --paper: #17181a;
+      --surface: #202025;
+      --ink: #e9f0f1;
+      --muted: #adb2b6;
+      --line: #3a3f43;
+      --accent: #9eb2d1;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Georgia, "Times New Roman", serif; line-height: 1.6; transition: background-color 180ms ease, color 180ms ease; }
+    a { color: var(--accent); }
+    a:hover, a:focus-visible { color: var(--ink); }
+    button, select { font: inherit; }
+    .wrap { width: min(calc(100% - 3rem), var(--max-width)); margin: 0 auto; }
+    header { border-bottom: 1px solid var(--line); }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1.25rem 0; }
+    .name { color: var(--ink); font-size: 1.1rem; font-weight: bold; text-decoration: none; }
+    nav, .controls, .contact-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; font-family: Arial, sans-serif; font-size: 0.85rem; }
+    nav a { text-decoration: none; }
+    .controls { gap: 0.55rem; }
+    .control-button, .language-select { padding: 0.4rem 0.65rem; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--ink); cursor: pointer; font-family: Arial, sans-serif; font-size: 0.78rem; }
+    .control-button:hover, .control-button:focus-visible, .language-select:focus-visible { border-color: var(--accent); }
+    .language-select option { background: var(--surface); color: var(--ink); }
+    main { padding: 5rem 0 3rem; }
+    .intro { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.8fr); gap: 4rem; align-items: end; padding-bottom: 5rem; }
+    .eyebrow, .section-label { margin: 0 0 1rem; color: var(--accent); font-family: Arial, sans-serif; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 720px; margin-bottom: 1.25rem; font-size: clamp(3rem, 7vw, 6.4rem); font-weight: normal; letter-spacing: -0.04em; line-height: 0.96; }
+    .lead { max-width: 650px; margin-bottom: 0; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.45rem); }
+    .intro-note { padding-left: 1.5rem; border-left: 2px solid var(--accent); color: var(--muted); font-size: 1rem; }
+    .intro-note strong { display: block; margin-bottom: 0.3rem; color: var(--ink); }
+    section { padding: 4rem 0; border-top: 1px solid var(--line); }
+    .section-heading { display: grid; grid-template-columns: 0.8fr 2fr; gap: 2rem; margin-bottom: 2.5rem; }
+    .section-heading h2 { max-width: 650px; margin-bottom: 0; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: normal; letter-spacing: -0.025em; line-height: 1.1; }
+    .work-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .work-item { display: grid; grid-template-columns: 1fr 1.8fr auto; gap: 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+    .work-item h3 { margin-bottom: 0.2rem; font-size: 1.25rem; font-weight: normal; }
+    .work-item p { max-width: 560px; margin-bottom: 0; color: var(--muted); }
+    .work-type { color: var(--muted); font-family: Arial, sans-serif; font-size: 0.76rem; text-transform: uppercase; }
+    .paper-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    .paper-card { overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+    .paper-preview { display: block; width: 100%; height: 360px; border: 0; background: var(--paper); }
+    .paper-preview-link { display: block; background: var(--paper); }
+    .paper-preview-image { display: block; width: 100%; height: 360px; object-fit: contain; }
+    .paper-info { padding: 1.15rem 1.25rem 1.25rem; }
+    .paper-info h3 { margin-bottom: 0.35rem; font-size: 1.25rem; font-weight: normal; }
+    .paper-info p { margin-bottom: 0.75rem; color: var(--muted); font-size: 0.94rem; }
+    .paper-link { font-family: Arial, sans-serif; font-size: 0.82rem; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .about-grid p { max-width: 580px; color: var(--muted); font-size: 1.08rem; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 0; }
+    .facts div { padding-top: 0.75rem; border-top: 1px solid var(--line); }
+    .facts dt { margin-bottom: 0.25rem; color: var(--muted); font-family: Arial, sans-serif; font-size: 0.75rem; text-transform: uppercase; }
+    .facts dd { margin: 0; font-size: 1rem; }
+    .featured-project { padding: 1.5rem; border: 1px solid var(--accent); background: var(--surface); }
+    .project-topline { display: flex; justify-content: space-between; gap: 1rem; }
+    .featured-project h3 { margin: 1rem 0 0.35rem; font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: normal; }
+    .featured-project > p { max-width: 650px; color: var(--muted); }
+    .project-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 0; }
+    .project-details div { padding-top: 0.65rem; border-top: 1px solid var(--line); }
+    .project-details dt { color: var(--muted); font-family: Arial, sans-serif; font-size: 0.72rem; text-transform: uppercase; }
+    .project-details dd { margin: 0.25rem 0 0; }
+    .project-list { margin-top: 1.5rem; border-top: 1px solid var(--line); }
+    .project-list div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+    .project-list span:last-child { color: var(--muted); font-family: Arial, sans-serif; font-size: 0.8rem; }
+    .contact { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+    .contact h2 { max-width: 650px; margin-bottom: 0; font-size: clamp(2rem, 5vw, 4.2rem); font-weight: normal; letter-spacing: -0.03em; line-height: 1; }
+    .contact-links { margin-bottom: 0.2rem; font-size: 0.9rem; }
+    footer { padding: 1.5rem 0 2rem; border-top: 1px solid var(--line); color: var(--muted); font-family: Arial, sans-serif; font-size: 0.8rem; }
+    .footer-links, .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; }
+    .footer-links { margin-bottom: 1rem; font-size: 0.85rem; }
+    .footer-bottom { justify-content: space-between; gap: 1rem; }
+    @media (max-width: 720px) {
+      .wrap { width: min(calc(100% - 2rem), var(--max-width)); }
+      .topbar, .contact { align-items: flex-start; flex-direction: column; gap: 1rem; }
+      .topbar { padding-bottom: 1rem; }
+      main { padding-top: 3.5rem; }
+      .intro, .section-heading, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .intro { padding-bottom: 3.5rem; }
+      .section-heading { margin-bottom: 2rem; }
+      .work-item { grid-template-columns: 1fr; gap: 0.3rem; }
+      .work-type { order: -1; }
+      .paper-grid { grid-template-columns: 1fr; }
+      .paper-preview { height: 420px; }
+      .paper-preview-image { height: 420px; }
+      .project-details { grid-template-columns: 1fr; }
+      section { padding: 3rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <a class="name" href="#top">ChecksMc</a>
+      <nav aria-label="Primary navigation">
+        <a href="#papers" data-i18n="navPapers">Papers</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#current-projects" data-i18n="navProjects">Projects</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="controls">
+        <button class="control-button" id="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+        <label class="sr-only" for="language-select">Language</label>
+        <select class="language-select" id="language-select" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option></select>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <div class="intro">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">Personal website</p>
+        <h1 data-i18n="headline">This is<br>ChecksMc.</h1>
+        <p class="lead" data-i18n="lead">I am a student in Q12 in Bavaria and interested in almost anything, including science, arts, music, linguistics and etymology, and sports. At the moment, I am especially interested in computer science and video games as a medium for emotions and ideas. This is a place for the things I learn, write, and make.</p>
+      </div>
+      <p class="intro-note"><strong data-i18n="currentlyLabel">Currently</strong><span data-i18n="currently">I am currently working on bwinf round 45, round 1, and W-Seminar.</span></p>
+    </div>
+
+    <section id="papers">
+      <div class="section-heading"><p class="section-label" data-i18n="papersLabel">Papers</p><h2 data-i18n="papersHeading">Some things I have researched and written about.</h2></div>
+      <div class="paper-grid">
+        <article class="paper-card"><a class="paper-preview-link" href="papers/Myscience.pdf" target="_blank" rel="noopener"><img class="paper-preview-image" src="papers/previews/myscience.png" alt="First page preview of My science"></a><div class="paper-info"><h3>Amplidar</h3><p data-i18n="paperScience">A science paper and project write-up.</p><a class="paper-link" href="papers/Myscience.pdf" target="_blank" rel="noopener" data-i18n="openPdf">Open PDF ↗</a></div></article>
+        <article class="paper-card"><a class="paper-preview-link" href="papers/doku_A2.pdf" target="_blank" rel="noopener"><img class="paper-preview-image" src="papers/previews/doku-a2.png" alt="First page preview of Documentation A2"></a><div class="paper-info"><h3>44_2 bwinf A2</h3><p data-i18n="paperDoku">Documentation for an A2 project.</p><a class="paper-link" href="papers/doku_A2.pdf" target="_blank" rel="noopener" data-i18n="openPdf">Open PDF ↗</a></div></article>
+        <article class="paper-card"><a class="paper-preview-link" href="papers/qubits.alias.pdf" target="_blank" rel="noopener"><img class="paper-preview-image" src="papers/previews/qubits.png" alt="First page preview of Qubits"></a><div class="paper-info"><h3>Qubits</h3><p data-i18n="paperQubits">A paper about qubits and quantum ideas.</p><a class="paper-link" href="papers/qubits.alias.pdf" target="_blank" rel="noopener" data-i18n="openPdf">Open PDF ↗</a></div></article>
+        <article class="paper-card"><a class="paper-preview-link" href="papers/spieltheorie.alias.pdf" target="_blank" rel="noopener"><img class="paper-preview-image" src="papers/previews/spieltheorie.png" alt="First page preview of Game theory"></a><div class="paper-info"><h3>Spieltheorie</h3><p data-i18n="paperGame">A paper about game theory.</p><a class="paper-link" href="papers/spieltheorie.alias.pdf" target="_blank" rel="noopener" data-i18n="openPdf">Open PDF ↗</a></div></article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-heading"><p class="section-label" data-i18n="aboutLabel">A little about me</p><h2 data-i18n="aboutHeading">Still figuring things out, which is kind of the point.</h2></div>
+      <div class="about-grid">
+        <div><p data-i18n="aboutTextOne">I am a student in Q12 in Bavaria and interested in almost anything, including science, arts, music, linguistics and etymology, and sports. At the moment, I am especially interested in computer science and video games as a medium for emotions and ideas.</p><p data-i18n="aboutTextTwo">I like discovering connections between different subjects and following questions wherever they lead.</p></div>
+        <dl class="facts"><div><dt data-i18n="factAge">Age</dt><dd>16</dd></div><div><dt data-i18n="factSchool">School year</dt><dd>Q12</dd></div><div><dt data-i18n="factInterests">Interests</dt><dd>Science, arts, music, languages, sports</dd></div><div><dt data-i18n="factLanguages">Languages</dt><dd>Deutsch / English / 中文 / Français</dd></div></dl>
+      </div>
+    </section>
+
+    <section id="current-projects">
+      <div class="section-heading"><p class="section-label" data-i18n="projectsLabel">Current projects</p><h2 data-i18n="projectsHeading">A closer look at what I am working on right now.</h2></div>
+      <article class="featured-project">
+        <div class="project-topline"><span class="work-type" data-i18n="featuredLabel">Featured project</span><span class="work-type">N/A</span></div>
+        <h3>W-Seminar</h3>
+        <p data-i18n="wSeminarDescription">A current school project. More information will be added as the project develops.</p>
+        <dl class="project-details">
+          <div><dt data-i18n="projectStatus">Status</dt><dd>N/A</dd></div>
+          <div><dt data-i18n="projectDetails">Details</dt><dd>N/A</dd></div>
+          <div><dt data-i18n="projectRepository">Repository</dt><dd><a href="https://github.com/ChecksMc/W-Seminar" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+        </dl>
+      </article>
+      <div class="project-list">
+        <div><span data-i18n="bwinf">BWINF 45 Round 1</span><span>N/A</span></div>
+        <div><span data-i18n="moreProjects">Further projects</span><span>N/A</span></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact"><h2 data-i18n="contactHeading">Have a question or an idea?<br>Let us talk.</h2><div class="contact-links"><a href="mailto:ChecksMc.youtube@outlook.com">Email</a><a href="https://github.com/ChecksMc">GitHub</a><a href="https://discord.com/users/1012006245265313813">Discord</a></div></section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-links">
+        <a href="mailto:ChecksMc.youtube@outlook.com">Email</a>
+        <a href="https://github.com/ChecksMc" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.com/users/1012006245265313813" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 ChecksMc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        navPapers: "Papers", navAbout: "About", navProjects: "Projects", navContact: "Contact", eyebrow: "Personal website", headline: "This is<br>ChecksMc.", lead: "I am a student in Q12 in Bavaria and interested in almost anything, including science, arts, music, linguistics and etymology, and sports. At the moment, I am especially interested in computer science and video games as a medium for emotions and ideas. This is a place for the things I learn, write, and make.", currentlyLabel: "Currently", currently: "I am currently working on BWINF Round 45, Round 1, and W-Seminar.", papersLabel: "Papers", papersHeading: "Some things I have researched and written about.", paperScience: "Grade 10: Amplidar, as part of a ten-week school project.", paperDoku: "Documentation for the 44th BWINF Round 2, Task 2.", paperQubits: "Grade 7: Introduction to qubits.", paperGame: "Grade 8: Introduction to game theory.", openPdf: "Open PDF ↗", aboutLabel: "A little about me", aboutHeading: "There is always something new to discover.", aboutTextOne: "I am a student in Q12 in Bavaria and interested in almost anything, including science, arts, music, linguistics and etymology, and sports. At the moment, I am especially interested in computer science and video games as a medium for emotions and ideas.", aboutTextTwo: "I like discovering connections between different subjects and following questions wherever they lead.", factAge: "Age", factSchool: "School year", factInterests: "Interests", factLanguages: "Languages", projectsLabel: "Current projects", projectsHeading: "A closer look at what I am working on right now.", featuredLabel: "Featured project", wSeminarDescription: "A current school project. More information will be added as the project develops.", projectStatus: "Status", projectDetails: "Details", projectRepository: "Repository", moreProjects: "Video game (early in development)", contactHeading: "Have a question or an idea?<br>Let us talk.", footer: "", bwinf: "45th German Informatics Competition, Round 1"
+      },
+      de: {
+        navPapers: "Arbeiten", navAbout: "Über mich", navProjects: "Projekte", navContact: "Kontakt", eyebrow: "Persönliche Website", headline: "Das ist<br>ChecksMc.", lead: "Ich bin Schüler der Q12 in Bayern und interessiere mich für fast alles, unter anderem für Naturwissenschaften, Kunst, Musik, Linguistik und Etymologie sowie Sport. Vor allem interessiert mich zurzeit die Informatik und Videospiele als Medium der Emotionen und Gedanken. Hier sammle ich Dinge, die ich lerne, schreibe und mache.", currentlyLabel: "Aktuell", currently: "Ich arbeite gerade an bwinf Runde 45, Runde 1, und am W-Seminar.", papersLabel: "Arbeiten", papersHeading: "Einige Dinge, über die ich recherchiert und geschrieben habe.", paperScience: "10. Klasse: Amplidar, im Rahmen eines 10-wöchigen Schulprojekts", paperDoku: "Dokumentation für den 44. bwinf Runde 2 Aufgabe 2.", paperQubits: "7. Klasse: Einführung in Qubits", paperGame: "8. Klasse: Einführung in Spieltheorie", openPdf: "PDF öffnen ↗", aboutLabel: "Ein bisschen über mich", aboutHeading: "Es gibt immer etwas Neues zu entdecken.", aboutTextOne: "Ich bin Schüler der Q12 in Bayern und interessiere mich für fast alles, unter anderem für Naturwissenschaften, Kunst, Musik, Linguistik und Etymologie sowie Sport. Vor allem interessiert mich zurzeit die Informatik und Videospiele als Medium der Emotionen und Gedanken.", aboutTextTwo: "Ich entdecke gerne Verbindungen zwischen verschiedenen Themen und folge Fragen, wohin sie mich auch führen.", factAge: "Alter", factSchool: "Schuljahr", factInterests: "Interessen", factLanguages: "Sprachen", projectsLabel: "Aktuelle Projekte", projectsHeading: "Ein genauerer Blick auf das, woran ich gerade arbeite.", featuredLabel: "Hervorgehobenes Projekt", wSeminarDescription: "Ein aktuelles Schulprojekt. Weitere Informationen werden ergänzt, sobald das Projekt weiter fortschreitet.", projectStatus: "Status", projectDetails: "Details", projectRepository: "Repository", moreProjects: "Video Spiel (early in development)", contactHeading: "Eine Frage oder eine Idee?<br>Schreib mir.", footer: "", bwinf: "45. Bundeswettbewerb Informatik Runde 1"
+      }
+    };
+
+    const languageSelect = document.querySelector("#language-select");
+    const themeToggle = document.querySelector("#theme-toggle");
+    function setLanguage(language) {
+      document.documentElement.lang = language;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = translations[language][element.dataset.i18n];
+        if (value) element.innerHTML = value;
+      });
+      languageSelect.value = language;
+      localStorage.setItem("language", language);
+    }
+    function setTheme(theme) {
+      const dark = theme === "dark";
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+      themeToggle.textContent = dark ? "Light mode" : "Dark mode";
+      themeToggle.setAttribute("aria-pressed", String(dark));
+      localStorage.setItem("theme", theme);
+    }
+    languageSelect.addEventListener("change", (event) => setLanguage(event.target.value));
+    themeToggle.addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+    setLanguage(localStorage.getItem("language") || "en");
+    setTheme(localStorage.getItem("theme") || "light");
+  </script>
+</body>
+</html>
